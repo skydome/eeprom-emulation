@@ -1,0 +1,28 @@
+{
+  "name": "eeprom-emulation",
+  "keywords": "stm32, eeprom, emulation",
+  "description": "Stm32 Eeprom Emulation libraray",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/skydome/eeprom-emulation.git"
+  },
+  "authors": 
+  [
+    {
+      "name": "Abdulkadir Yaman",
+      "email": "abdulkadir@skydome.io",
+      "url": "https://skydome.io",
+      "maintainer": true
+    },
+    {
+      "name": "Cagatay Yucelen",
+      "email": "cagatay@skydome.io",
+      "url": "https://skydome.io",
+      "maintainer": true
+    }
+  ],
+  "version": "0.0.1",
+  "frameworks": "stm32cube",
+  "platforms": "ststm32"
+}
