@@ -1,5 +1,5 @@
 {
-  "name": "eeprom-emulation",
+  "name": "eeprom",
   "keywords": "stm32, eeprom, emulation, stm32L4",
   "description": "Stm32L4 eeprom emulation library for reading and writing to flash memory to extend 10K erase/write cycle of wear-off",
   "repository":
