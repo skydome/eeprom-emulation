@@ -1,7 +1,7 @@
 {
   "name": "eeprom-emulation",
-  "keywords": "stm32, eeprom, emulation",
-  "description": "Stm32 Eeprom Emulation libraray",
+  "keywords": "stm32, eeprom, emulation, stm32L4",
+  "description": "Stm32L4 eeprom emulation library for reading and writing to flash memory to extend 10K erase/write cycle of wear-off",
   "repository":
   {
     "type": "git",
@@ -22,7 +22,7 @@
       "maintainer": true
     }
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "frameworks": "stm32cube",
   "platforms": "ststm32"
 }

@@ -66,12 +66,12 @@
 
 /* Configuration of eeprom emulation in flash, can be custom */
 #if defined (STM32L4R5xx) || defined (STM32L4R7xx) || defined (STM32L4R9xx) || defined (STM32L4S5xx) || defined (STM32L4S7xx) || defined (STM32L4S9xx)
-#define START_PAGE_ADDRESS      0x08028000U /*!< Start address of the 1st page in flash, for EEPROM emulation */
+#define START_PAGE_ADDRESS      0x08028000U /*!< Start address of the 80th page in flash, for EEPROM emulation */
 #else
-#define START_PAGE_ADDRESS      0x08028000U /*!< Start address of the 1st page in flash, for EEPROM emulation */
+#define START_PAGE_ADDRESS      0x08028000U /*!< Start address of the 80th page in flash, for EEPROM emulation */
 #endif
-#define CYCLES_NUMBER           10U   /*!< Number of 10Kcycles requested, minimum 1 for 10Kcycles (default),
-                                        for instance 10 to reach 100Kcycles. This factor will increase
+#define CYCLES_NUMBER           10U   /*!< Number of 10Kcycles requested, minimum 1 for 10K cycles,
+                                        for instance 10 to reach 100K cycles. This factor will increase
                                         pages number */
 #define GUARD_PAGES_NUMBER      2U   /*!< Number of guard pages avoiding frequent transfers (must be multiple of 2): 0,2,4.. */
 
