@@ -60,14 +60,7 @@ uint32_t readFromEEPROM(uint16_t virtualAddress){
   return data;
 }
 
-void Error_Handler(){
-  while( 1 ){
-    SKY_LED_TOGGLE(SKY_LED1);
-    HAL_Delay(2000);
-  }
-}
-
-void writeToEEPROM(uint16_t virtualAddress, uint32_t data){
+EE_Status writeToEEPROM(uint16_t virtualAddress, uint32_t data){
   HAL_FLASH_Unlock();
   __HAL_RCC_PWR_CLK_ENABLE();
   ee_status = EE_Init(VirtualEEPROM, EE_CONDITIONAL_ERASE);
@@ -75,7 +68,7 @@ void writeToEEPROM(uint16_t virtualAddress, uint32_t data){
   while (ErasingOnGoing == 1) { }
 
   if(ee_status != EE_OK) {
-    Error_Handler();
+    return ee_status;
   }
   ee_status = EE_WriteVariable32bits(VirtualEEPROM[virtualAddress], data);
 
@@ -85,9 +78,10 @@ void writeToEEPROM(uint16_t virtualAddress, uint32_t data){
   }
 
   if ((ee_status & EE_STATUSMASK_ERROR) == EE_STATUSMASK_ERROR) {
-    Error_Handler();
+    return ee_status;
   }
 
   HAL_FLASH_Lock();
+  return ee_status;
 }
 

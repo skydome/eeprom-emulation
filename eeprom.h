@@ -2,9 +2,10 @@
 #define EEPROM_H
 
 #include <inttypes.h>
+#include "eeprom_emul.h"
 
 void initializeEEPROM();
-void writeToEEPROM(uint16_t virtualAddress, uint32_t data);
+EE_Status writeToEEPROM(uint16_t virtualAddress, uint32_t data);
 uint32_t readFromEEPROM(uint16_t virtualAddress);
 
 uint32_t getFW1Version();
