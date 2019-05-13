@@ -77,6 +77,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "eeprom_emul.h"
+#include "sky_crc.h"
 /** @defgroup EEPROM_Emulation EEPROM_Emulation
   * @{
   */
@@ -1638,13 +1639,13 @@ static void VerifyStateReset(uint32_t TriggerState)
 void ConfigureCrc(void)
 {
   /* (1) Enable peripheral clock for CRC */
-  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_CRC);
+  // LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_CRC);
 
   /* (2) Configure CRC functional parameters */
 
   /* Configure CRC calculation unit with user defined polynomial */
-  LL_CRC_SetPolynomialCoef(CRC, CRC_POLYNOMIAL_VALUE);
-  LL_CRC_SetPolynomialSize(CRC, CRC_POLYNOMIAL_LENGTH);
+  // LL_CRC_SetPolynomialCoef(CRC, CRC_POLYNOMIAL_VALUE);
+  // LL_CRC_SetPolynomialSize(CRC, CRC_POLYNOMIAL_LENGTH);
 
   /* Initialize default CRC initial value */
   /* Reset value is LL_CRC_DEFAULT_CRC_INITVALUE */
@@ -1668,14 +1669,19 @@ void ConfigureCrc(void)
 uint16_t CalculateCrc(EE_DATA_TYPE Data, uint16_t VirtAddress)
 {
   /* Reset CRC calculation unit */
-  LL_CRC_ResetCRCCalculationUnit(CRC);
+  // LL_CRC_ResetCRCCalculationUnit(CRC);
 
-  /* Feed Data and Virtual Address */
-  LL_CRC_FeedData32(CRC, Data);
-  LL_CRC_FeedData16(CRC, VirtAddress);
+  // /* Feed Data and Virtual Address */
+  // LL_CRC_FeedData32(CRC, Data);
+  // LL_CRC_FeedData16(CRC, VirtAddress);
+
+  uint8_t buffer[6];
+  memcpy(buffer, &Data, sizeof(uint32_t));
+  memcpy(&buffer[4], &VirtAddress, sizeof(uint16_t));
+
 
   /* Return computed CRC value */
-  return(LL_CRC_ReadData16(CRC));
+  return((uint16_t)calculateCRC(buffer, 6));
 }
 /**
   * @}
