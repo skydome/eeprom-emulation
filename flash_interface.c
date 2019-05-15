@@ -86,6 +86,8 @@ EE_Status PageErase(uint32_t Page, uint16_t NbPages) {
   s_eraseinit.Page = Page;
   s_eraseinit.Banks = bank;
 
+  __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGSERR);
+
   if (HAL_FLASH_Unlock() != HAL_OK) {
     return EE_ERASE_ERROR;
   }
