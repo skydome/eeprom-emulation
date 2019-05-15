@@ -16,10 +16,9 @@ CRC_HandleTypeDef *initializeCRC() {
   return &CrcHandle;
 }
 
-void deinitializeCRC(){
+void deinitializeCRC() {
   HAL_CRC_DeInit(&CrcHandle);
   __HAL_RCC_CRC_CLK_DISABLE();
 }
 
 uint32_t calculateCRC(uint8_t *data, uint32_t size) { return ~HAL_CRC_Calculate(&CrcHandle, (uint32_t *)data, size); }
-
