@@ -24,7 +24,7 @@ void setCurrentFWAddress(uint32_t newAddress);
 #define FW2_VERSION_INDEX 2
 #define FW2_HEALTH_INDEX 3
 #define FW_CURRENT_ADDRESS_INDEX 4
-#define FW_HEALTHY 1
-#define FW_BROKEN 2
+#define FW_HEALTHY 0
+#define FW_BROKEN 1
 
 #endif
