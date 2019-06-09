@@ -88,16 +88,11 @@ EE_Status PageErase(uint32_t Page, uint16_t NbPages) {
 
   __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_EOP | FLASH_FLAG_OPERR | FLASH_FLAG_WRPERR | FLASH_FLAG_PGAERR | FLASH_FLAG_PGSERR);
 
-  if (HAL_FLASH_Unlock() != HAL_OK) {
-    return EE_ERASE_ERROR;
-  }
-
   /* Erase the Page: Set Page status to ERASED status */
   if (HAL_FLASHEx_Erase(&s_eraseinit, &page_error) != HAL_OK) {
     status = EE_ERASE_ERROR;
   }
 
-  HAL_FLASH_Lock();
   return status;
 }
 
